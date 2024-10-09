@@ -1,0 +1,85 @@
+{
+  "dashboard": {
+    "type": "performance",
+    "data": {
+      "title": "Mi desempeño del mes",
+      "date": "1 de septiembre 2020",
+      "zone": "090",
+      "kpis": [
+        {
+          "name": "Venta *",
+          "format": "currency",
+          "real": 528000,
+          "target": 534000,
+          "achieved": 90,
+          "color": "green"
+        },
+        {
+          "name": "Clientes",
+          "real": 45,
+          "target": 64,
+          "achieved": 70,
+          "color": "red"
+        },
+        {
+          "name": "Items",
+          "real": 960,
+          "target": 1920,
+          "achieved": 50,
+          "color": "red"
+        }
+      ],
+      "notes": [
+        "Cifras en miles de pesos"
+      ]
+    }
+  },
+  "agenda": [
+    {
+      "name": "Clientes a visitar",
+      "activities": [
+        {
+          "label": "Super pañales",
+          "details": "Q5 - pañaleras",
+          "duration": "Duración visita: 2 horas"
+        },
+        {
+          "label": "Super pañales",
+          "details": "Q5 - pañaleras",
+          "duration": "Duración visita: 2 horas"
+        },
+        {
+          "label": "Super pañales",
+          "details": "Q5 - pañaleras",
+          "duration": "Duración visita: 2 horas"
+        },
+        {
+          "label": "Super pañales",
+          "details": "Q5 - pañaleras",
+          "duration": "Duración visita: 2 horas"
+        }
+      ]
+    },
+    {
+      "name": "Actividades reservadas",
+      "activities": [
+        {
+          "label": "Planificación mensual",
+          "duration": "Duración visita: 8 horas"
+        },
+        {
+          "label": "Código estadístico",
+          "duration": "Duración visita: 8 horas"
+        }
+      ]
+    },
+    {
+      "name": "Tareas generales",
+      "activities": [
+        {
+          "label": "llamar a cliente"
+        }
+      ]
+    }
+  ]
+}

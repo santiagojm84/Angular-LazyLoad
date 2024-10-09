@@ -1,0 +1,684 @@
+{
+  "routers": [
+    {
+      "id": 4,
+      "agentId": 2,
+      "entityId": 1
+    },
+    {
+      "id": 5,
+      "agentId": 2,
+      "entityId": 3
+    },
+    {
+      "id": 6,
+      "agentId": 2,
+      "entityId": 5
+    },
+    {
+      "id": 7,
+      "agentId": 2,
+      "entityId": 7
+    }
+  ],
+  "actions": [
+    {
+      "id_Action": 1,
+      "name": "SIEMBRA\r\n",
+      "idSegmentation": null,
+      "idActionType": 10,
+      "target": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam"
+    },
+    {
+      "id_Action": 2,
+      "name": "CRUZAR CARTERA",
+      "idSegmentation": null,
+      "idActionType": 3,
+      "target": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam"
+    },
+    {
+      "id_Action": 3,
+      "name": "TOMA PEDIDO",
+      "idSegmentation": null,
+      "idActionType": 4,
+      "target": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam"
+    },
+    {
+      "id_Action": 4,
+      "name": "PRESENTA PRODUCTOS",
+      "idSegmentation": null,
+      "idActionType": 10,
+      "target": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam"
+    },
+    {
+      "id_Action": 5,
+      "name": "SIEMBRA ALCOHOL",
+      "idSegmentation": null,
+      "idActionType": 10,
+      "target": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam"
+    },
+    {
+      "id_Action": 6,
+      "name": "TRATAMIENTO DE DATOS",
+      "idSegmentation": null,
+      "idActionType": 2,
+      "target": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam"
+    },
+    {
+      "id_Action": 7,
+      "name": "ENCUESTA PAÑLERAS TRAD 2021",
+      "idSegmentation": null,
+      "idActionType": 2,
+      "target": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam"
+    }
+  ],
+  "actionTypes": [
+    {
+      "id_TypeAction": 1,
+      "name_TypeAction": "Radicación documentos cobro\r\n",
+      "actionClass": "General\r\n",
+      "subType": "Fijas\r\n",
+      "clasification": "Acciones Operativas\r\n",
+      "marking": "https://\r\n",
+      "focus_AF_UN": "Cartera\r\n"
+    },
+    {
+      "id_TypeAction": 2,
+      "name_TypeAction": "Visita realizada",
+      "actionClass": "Visita",
+      "subType": "Fijas",
+      "clasification": "Acciones Operativas",
+      "marking": "https://",
+      "focus_AF_UN": "Operativa"
+    },
+    {
+      "id_TypeAction": 3,
+      "name_TypeAction": "Cobros y conciliación de Cartera",
+      "actionClass": "Visita",
+      "subType": "Fijas",
+      "clasification": "Acciones Operativas",
+      "marking": "https://",
+      "focus_AF_UN": "Cartera"
+    },
+    {
+      "id_TypeAction": 4,
+      "name_TypeAction": "Argumentar y negociar la Venta",
+      "actionClass": "Visita",
+      "subType": "Fijas",
+      "clasification": "Acciones Operativas",
+      "marking": "https://",
+      "focus_AF_UN": "Venta"
+    },
+    {
+      "id_TypeAction": 5,
+      "name_TypeAction": "Chequeo Inventario",
+      "actionClass": "Visita",
+      "subType": "Fijas",
+      "clasification": "Acciones Operativas",
+      "marking": "https://",
+      "focus_AF_UN": "Operativa"
+    },
+    {
+      "id_TypeAction": 6,
+      "name_TypeAction": "Chequeo Precios",
+      "actionClass": "Visita",
+      "subType": "Fijas",
+      "clasification": "Acciones Operativas",
+      "marking": "https://",
+      "focus_AF_UN": "Operativa"
+    },
+    {
+      "id_TypeAction": 7,
+      "name_TypeAction": "Chequeo Inventario Activo",
+      "actionClass": "Visita",
+      "subType": "Fijas",
+      "clasification": "Acciones Operativas",
+      "marking": "https://",
+      "focus_AF_UN": "Operativa"
+    },
+    {
+      "id_TypeAction": 8,
+      "name_TypeAction": "Chequeos Espacios",
+      "actionClass": "Visita",
+      "subType": "Fijas",
+      "clasification": "Acciones Operativas",
+      "marking": "https://",
+      "focus_AF_UN": "Operativa"
+    },
+    {
+      "id_TypeAction": 9,
+      "name_TypeAction": "Chequeos Exhibiciones Adicionales",
+      "actionClass": "Visita",
+      "subType": "Fijas",
+      "clasification": "Acciones Operativas",
+      "marking": "https://",
+      "focus_AF_UN": "Operativa"
+    },
+    {
+      "id_TypeAction": 10,
+      "name_TypeAction": "Realizar/Seguir Siembra",
+      "actionClass": "Visita",
+      "subType": "Foco",
+      "clasification": "Actividades Coyunturales",
+      "marking": "https://",
+      "focus_AF_UN": "Venta"
+    },
+    {
+      "id_TypeAction": 11,
+      "name_TypeAction": "Actualizar Información del Cliente",
+      "actionClass": "Visita",
+      "subType": "Fijas",
+      "clasification": "Acciones Operativas",
+      "marking": "https://",
+      "focus_AF_UN": "Operativa"
+    },
+    {
+      "id_TypeAction": 12,
+      "name_TypeAction": "Código Estadístico Masivo",
+      "actionClass": "Reservada",
+      "subType": "Foco",
+      "clasification": "Acciones Operativas",
+      "marking": "https://",
+      "focus_AF_UN": "Mercadeo"
+    },
+    {
+      "id_TypeAction": 13,
+      "name_TypeAction": "Despacho automático",
+      "actionClass": "Visita",
+      "subType": "Foco",
+      "clasification": "Actividades Estructurales",
+      "marking": "https://",
+      "focus_AF_UN": "Venta"
+    },
+    {
+      "id_TypeAction": 14,
+      "name_TypeAction": "Presentación de Acuerdo Comercial",
+      "actionClass": "Visita",
+      "subType": "Foco",
+      "clasification": "Actividades Estructurales",
+      "marking": "https://",
+      "focus_AF_UN": "Venta"
+    },
+    {
+      "id_TypeAction": 15,
+      "name_TypeAction": "Retroalimentación de Acuerdos Comerciales",
+      "actionClass": "Visita",
+      "subType": "Foco",
+      "clasification": "Actividades Estructurales",
+      "marking": "https://",
+      "focus_AF_UN": "Venta"
+    },
+    {
+      "id_TypeAction": 16,
+      "name_TypeAction": "Seguimiento Acuerdos Comerciales",
+      "actionClass": "Visita",
+      "subType": "Foco",
+      "clasification": "Actividades Estructurales",
+      "marking": "https://",
+      "focus_AF_UN": "Venta"
+    },
+    {
+      "id_TypeAction": 17,
+      "name_TypeAction": "Montar exhibiciones adicionales",
+      "actionClass": "General",
+      "subType": "Foco",
+      "clasification": "Actividades Coyunturales",
+      "marking": "https://",
+      "focus_AF_UN": "Mercadeo"
+    },
+    {
+      "id_TypeAction": 18,
+      "name_TypeAction": "Presentación de Actividades Rentabilidad",
+      "actionClass": "Visita",
+      "subType": "Foco",
+      "clasification": "Actividades Estructurales",
+      "marking": "https://",
+      "focus_AF_UN": "Mercadeo"
+    },
+    {
+      "id_TypeAction": 19,
+      "name_TypeAction": "Seguimiento Actividades Rentabilidad",
+      "actionClass": "Visita",
+      "subType": "Foco",
+      "clasification": "Actividades Estructurales",
+      "marking": "https://",
+      "focus_AF_UN": "Mercadeo"
+    },
+    {
+      "id_TypeAction": 20,
+      "name_TypeAction": "Presentación de Actividades Colocación",
+      "actionClass": "Visita",
+      "subType": "Foco",
+      "clasification": "Actividades Coyunturales",
+      "marking": "https://",
+      "focus_AF_UN": "Mercadeo"
+    },
+    {
+      "id_TypeAction": 21,
+      "name_TypeAction": "Presentación de Actividades Evacuación",
+      "actionClass": "Visita",
+      "subType": "Foco",
+      "clasification": "Actividades Coyunturales",
+      "marking": "https://",
+      "focus_AF_UN": "Mercadeo"
+    },
+    {
+      "id_TypeAction": 22,
+      "name_TypeAction": "Empacar/Sellar/Tramitar Devoluciones",
+      "actionClass": "General",
+      "subType": "Fijas",
+      "clasification": "Acciones Operativas",
+      "marking": "https://",
+      "focus_AF_UN": "Logística"
+    },
+    {
+      "id_TypeAction": 23,
+      "name_TypeAction": "Tramitar actualización de cupo",
+      "actionClass": "General",
+      "subType": "Fijas",
+      "clasification": "Acciones Operativas",
+      "marking": "https://",
+      "focus_AF_UN": "Operativa"
+    },
+    {
+      "id_TypeAction": 24,
+      "name_TypeAction": "Implementar material POP",
+      "actionClass": "General",
+      "subType": "Foco",
+      "clasification": "Actividades Coyunturales",
+      "marking": "https://",
+      "focus_AF_UN": "Mercadeo"
+    },
+    {
+      "id_TypeAction": 25,
+      "name_TypeAction": "Tramitar solicitud de crédito",
+      "actionClass": "General",
+      "subType": "Fijas",
+      "clasification": "Acciones Operativas",
+      "marking": "https://",
+      "focus_AF_UN": "Operativa"
+    },
+    {
+      "id_TypeAction": 26,
+      "name_TypeAction": "Reunión con Fuerza de Ventas",
+      "actionClass": "General",
+      "subType": "Fijas",
+      "clasification": "Actividades Coyunturales",
+      "marking": "https://",
+      "focus_AF_UN": "Operativa"
+    }
+  ],
+  "activities": [
+    {
+      "id": 141,
+      "routerId": 4,
+      "cicle": 1,
+      "executionDate": "2021-03-12T15:40:31.483",
+      "actionId": 1,
+      "isDone": "0",
+      "sourceId": "GUION",
+      "startDate": null,
+      "endDate": null,
+      "isRequired": "1",
+      "order": 1
+    },
+    {
+      "id": 142,
+      "routerId": 4,
+      "cicle": 1,
+      "executionDate": "2021-03-12T15:40:31.483",
+      "actionId": 2,
+      "isDone": "0",
+      "sourceId": "GUION",
+      "startDate": null,
+      "endDate": null,
+      "isRequired": "1",
+      "order": 1
+    },
+    {
+      "id": 143,
+      "routerId": 4,
+      "cicle": 1,
+      "executionDate": "2021-03-12T15:40:31.483",
+      "actionId": 3,
+      "isDone": "0",
+      "sourceId": "GUION",
+      "startDate": null,
+      "endDate": null,
+      "isRequired": "0",
+      "order": 1
+    },
+    {
+      "id": 144,
+      "routerId": 4,
+      "cicle": 1,
+      "executionDate": "2021-03-12T15:40:31.483",
+      "actionId": 4,
+      "isDone": "0",
+      "sourceId": "GUION",
+      "startDate": null,
+      "endDate": null,
+      "isRequired": "1",
+      "order": 1
+    },
+    {
+      "id": 145,
+      "routerId": 4,
+      "cicle": 1,
+      "executionDate": "2021-03-12T15:40:31.483",
+      "actionId": 5,
+      "isDone": "0",
+      "sourceId": "GUION",
+      "startDate": null,
+      "endDate": null,
+      "isRequired": "0",
+      "order": 1
+    },
+    {
+      "id": 146,
+      "routerId": 4,
+      "cicle": 1,
+      "executionDate": "2021-03-12T15:40:31.483",
+      "actionId": 6,
+      "isDone": "0",
+      "sourceId": "GUION",
+      "startDate": null,
+      "endDate": null,
+      "isRequired": "1",
+      "order": 1
+    },
+    {
+      "id": 147,
+      "routerId": 4,
+      "cicle": 1,
+      "executionDate": "2021-03-12T15:40:31.483",
+      "actionId": 7,
+      "isDone": "0",
+      "sourceId": "GUION",
+      "startDate": null,
+      "endDate": null,
+      "isRequired": "1",
+      "order": 1
+    },
+    {
+      "id": 148,
+      "routerId": 5,
+      "cicle": 1,
+      "executionDate": "2021-03-12T15:40:31.483",
+      "actionId": 1,
+      "isDone": "0",
+      "sourceId": "GUION",
+      "startDate": null,
+      "endDate": null,
+      "isRequired": "1",
+      "order": 1
+    },
+    {
+      "id": 149,
+      "routerId": 5,
+      "cicle": 1,
+      "executionDate": "2021-03-12T15:40:31.483",
+      "actionId": 2,
+      "isDone": "0",
+      "sourceId": "GUION",
+      "startDate": null,
+      "endDate": null,
+      "isRequired": "1",
+      "order": 1
+    },
+    {
+      "id": 150,
+      "routerId": 5,
+      "cicle": 1,
+      "executionDate": "2021-03-12T15:40:31.483",
+      "actionId": 3,
+      "isDone": "0",
+      "sourceId": "GUION",
+      "startDate": null,
+      "endDate": null,
+      "isRequired": "0",
+      "order": 1
+    },
+    {
+      "id": 151,
+      "routerId": 5,
+      "cicle": 1,
+      "executionDate": "2021-03-12T15:40:31.483",
+      "actionId": 4,
+      "isDone": "0",
+      "sourceId": "GUION",
+      "startDate": null,
+      "endDate": null,
+      "isRequired": "1",
+      "order": 1
+    },
+    {
+      "id": 152,
+      "routerId": 5,
+      "cicle": 1,
+      "executionDate": "2021-03-12T15:40:31.483",
+      "actionId": 5,
+      "isDone": "0",
+      "sourceId": "GUION",
+      "startDate": null,
+      "endDate": null,
+      "isRequired": "0",
+      "order": 1
+    },
+    {
+      "id": 153,
+      "routerId": 5,
+      "cicle": 1,
+      "executionDate": "2021-03-12T15:40:31.483",
+      "actionId": 6,
+      "isDone": "0",
+      "sourceId": "GUION",
+      "startDate": null,
+      "endDate": null,
+      "isRequired": "1",
+      "order": 1
+    },
+    {
+      "id": 154,
+      "routerId": 5,
+      "cicle": 1,
+      "executionDate": "2021-03-12T15:40:31.483",
+      "actionId": 7,
+      "isDone": "0",
+      "sourceId": "GUION",
+      "startDate": null,
+      "endDate": null,
+      "isRequired": "1",
+      "order": 1
+    },
+    {
+      "id": 155,
+      "routerId": 6,
+      "cicle": 1,
+      "executionDate": "2021-03-12T15:40:31.483",
+      "actionId": 1,
+      "isDone": "0",
+      "sourceId": "GUION",
+      "startDate": null,
+      "endDate": null,
+      "isRequired": "1",
+      "order": 1
+    },
+    {
+      "id": 156,
+      "routerId": 6,
+      "cicle": 1,
+      "executionDate": "2021-03-12T15:40:31.483",
+      "actionId": 2,
+      "isDone": "0",
+      "sourceId": "GUION",
+      "startDate": null,
+      "endDate": null,
+      "isRequired": "1",
+      "order": 1
+    },
+    {
+      "id": 157,
+      "routerId": 6,
+      "cicle": 1,
+      "executionDate": "2021-03-12T15:40:31.483",
+      "actionId": 3,
+      "isDone": "0",
+      "sourceId": "GUION",
+      "startDate": null,
+      "endDate": null,
+      "isRequired": "0",
+      "order": 1
+    },
+    {
+      "id": 158,
+      "routerId": 6,
+      "cicle": 1,
+      "executionDate": "2021-03-12T15:40:31.483",
+      "actionId": 4,
+      "isDone": "0",
+      "sourceId": "GUION",
+      "startDate": null,
+      "endDate": null,
+      "isRequired": "1",
+      "order": 1
+    },
+    {
+      "id": 159,
+      "routerId": 6,
+      "cicle": 1,
+      "executionDate": "2021-03-12T15:40:31.483",
+      "actionId": 5,
+      "isDone": "0",
+      "sourceId": "GUION",
+      "startDate": null,
+      "endDate": null,
+      "isRequired": "0",
+      "order": 1
+    },
+    {
+      "id": 160,
+      "routerId": 6,
+      "cicle": 1,
+      "executionDate": "2021-03-12T15:40:31.483",
+      "actionId": 6,
+      "isDone": "0",
+      "sourceId": "GUION",
+      "startDate": null,
+      "endDate": null,
+      "isRequired": "1",
+      "order": 1
+    },
+    {
+      "id": 161,
+      "routerId": 6,
+      "cicle": 1,
+      "executionDate": "2021-03-12T15:40:31.483",
+      "actionId": 7,
+      "isDone": "0",
+      "sourceId": "GUION",
+      "startDate": null,
+      "endDate": null,
+      "isRequired": "1",
+      "order": 1
+    },
+    {
+      "id": 162,
+      "routerId": 7,
+      "cicle": 1,
+      "executionDate": "2021-03-12T15:40:31.483",
+      "actionId": 1,
+      "isDone": "0",
+      "sourceId": "GUION",
+      "startDate": null,
+      "endDate": null,
+      "isRequired": "1",
+      "order": 1
+    },
+    {
+      "id": 163,
+      "routerId": 7,
+      "cicle": 1,
+      "executionDate": "2021-03-12T15:40:31.483",
+      "actionId": 2,
+      "isDone": "0",
+      "sourceId": "GUION",
+      "startDate": null,
+      "endDate": null,
+      "isRequired": "1",
+      "order": 1
+    },
+    {
+      "id": 164,
+      "routerId": 7,
+      "cicle": 1,
+      "executionDate": "2021-03-12T15:40:31.483",
+      "actionId": 3,
+      "isDone": "0",
+      "sourceId": "GUION",
+      "startDate": null,
+      "endDate": null,
+      "isRequired": "0",
+      "order": 1
+    },
+    {
+      "id": 165,
+      "routerId": 7,
+      "cicle": 1,
+      "executionDate": "2021-03-12T15:40:31.483",
+      "actionId": 4,
+      "isDone": "0",
+      "sourceId": "GUION",
+      "startDate": null,
+      "endDate": null,
+      "isRequired": "1",
+      "order": 1
+    },
+    {
+      "id": 166,
+      "routerId": 7,
+      "cicle": 1,
+      "executionDate": "2021-03-12T15:40:31.483",
+      "actionId": 5,
+      "isDone": "0",
+      "sourceId": "GUION",
+      "startDate": null,
+      "endDate": null,
+      "isRequired": "0",
+      "order": 1
+    },
+    {
+      "id": 167,
+      "routerId": 7,
+      "cicle": 1,
+      "executionDate": "2021-03-12T15:40:31.483",
+      "actionId": 6,
+      "isDone": "0",
+      "sourceId": "GUION",
+      "startDate": null,
+      "endDate": null,
+      "isRequired": "1",
+      "order": 1
+    },
+    {
+      "id": 168,
+      "routerId": 7,
+      "cicle": 1,
+      "executionDate": "2021-03-12T15:40:31.483",
+      "actionId": 7,
+      "isDone": "0",
+      "sourceId": "GUION",
+      "startDate": null,
+      "endDate": null,
+      "isRequired": "1",
+      "order": 1
+    }
+  ]
+}

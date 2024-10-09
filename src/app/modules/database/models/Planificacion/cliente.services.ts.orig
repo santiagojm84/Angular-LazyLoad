@@ -1,0 +1,395 @@
+import { getDBStore, STORES } from "@database/database.const";
+import { DatabaseService } from "@database/database.service";
+import { isEqual } from "date-fns";
+import { unwatchFile } from "fs";
+import moment from "moment";
+import { cteClientes } from "src/modules/planeacion/constantes/constanes_planeacion";
+import { cteVisitas } from "src/modules/planeacion/constantes/constantes_visitas";
+import { ClientesInterface } from "../Interfaces/cliente.interface";
+import { EstadosCarteraInterface } from "../Interfaces/estadosCartera.interface";
+import { VisitasInterface } from "../Interfaces/visitas.interface";
+
+
+
+export class ClientesServices {
+
+    static async compararFechas(fechaA: Date, fechaB: Date) {
+        if (fechaA.getDate() == fechaB.getDate() && fechaA.getMonth() == fechaB.getMonth() && fechaA.getFullYear() == fechaB.getFullYear()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    static async validarFechaHabil(db: DatabaseService) {
+        var lsFechasHabiles = await db.obtenerListaObjetoIndexedDB(getDBStore(STORES.FechasHabiles));
+        var fechaHoy = new Date();
+        fechaHoy.setHours(0, 0, 0);
+        var estado = false;
+        if(lsFechasHabiles?.length > 0){
+            for (let index = 0; index < lsFechasHabiles.length; index++) {
+                var result = await ClientesServices.compararFechas(lsFechasHabiles[index].fecha, fechaHoy);
+                if (result == true){
+                    estado = true;
+                    index = lsFechasHabiles.length;
+                }                
+            }
+        }        
+        if (estado == false) throw "Solo se permiten planear visitas en los 3 primeros días hábiles del plan";
+    }
+
+    static async agregarFechasHabiles(fechasCierre: any, festivos: any, db: DatabaseService, estadoFestivos: boolean) {
+        await db.eliminarDatosTablaIndexedDB(getDBStore(STORES.FechasHabiles))
+        const dias = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'];
+        if (fechasCierre == null || fechasCierre == undefined) return null;
+        fechasCierre = fechasCierre?.length > 0 ? fechasCierre[0] : fechasCierre;
+        //Obtener fecha de arranque
+        var obtenerFechaInicio = new Date(fechasCierre?.startDate);
+        obtenerFechaInicio.setHours(0, 0, 0);
+        //Días
+        var cantidadDias = 3;
+        //Lista para las nuevas fechas habiles para planear
+        var nuevasFechas = [];
+        //Recorre 3 que son los días habiles
+        for (let index = 0; index < cantidadDias; index++) {
+            var diaSiguiente = new Date(obtenerFechaInicio);
+            diaSiguiente.setHours(0, 0, 0);
+            //Obtener el texto del día
+            var nombreDia = dias[diaSiguiente.getDay()]
+            //Saber si es festivo o no
+            var obtenerFestivo = festivos.find(a => {
+                var diaFestivo = new Date(a.holyDay);
+                diaFestivo.setHours(0, 0, 0);
+                if (diaFestivo.getTime() == diaSiguiente.getTime()) return a;
+            });
+            if (nombreDia == "domingo" || obtenerFestivo != undefined) cantidadDias++;
+            if (estadoFestivos == true && obtenerFestivo != undefined) cantidadDias--;
+            //Guardar la fecha
+            nuevasFechas.push(
+                {
+                    "fecha": diaSiguiente
+                }
+            )
+            //Aumentar la fecha de inicio en un día
+            obtenerFechaInicio.setDate(obtenerFechaInicio.getDate() + 1);
+        }
+        if (nuevasFechas.length > 0) await db.agregarListaObjectoIndexedDB(getDBStore(STORES.FechasHabiles), nuevasFechas);
+    }
+
+    static filtrarClientes(clientes: Array<ClientesInterface>, lsestado: Array<any>, lsquintil: Array<any>, lsCartera: Array<any>) {
+        if (lsestado.length > 0) {
+            clientes = clientes.filter((el) => {
+                return lsestado.some((f) => {
+                    return f.id === el.estado
+                });
+            });
+        }
+        if (lsquintil.length > 0) {
+            clientes = clientes.filter((el) => {
+                return lsquintil.some((f) => {
+                    return f.id === el.quintil
+                });
+            });
+        }
+        if (lsCartera.length > 0) {
+            clientes = clientes.filter((el) => {
+                return lsCartera.some(car => {
+                    return el.listaEstadosCartera.some(a => a.id == car.id);
+                });
+            });
+            clientes = clientes.filter(a => a.listaEstadosCartera.length > 0);
+        }
+        return clientes;
+    }
+    static agruparClientes(clientes: Array<ClientesInterface>, tipo: string, orden: string) {
+        if (clientes == null || clientes.length == 0) return [];
+        var lsobjeto = [];
+        var id = 0;
+        //Ciudad
+        if (tipo == "ciudad") {
+            clientes.forEach(element => {
+                var existe = lsobjeto.find(a => a.nombre == element.nombreCiudad);
+                if (existe == undefined) {
+                    lsobjeto.push({
+                        id: id + 1,
+                        nombre: element.nombreCiudad,
+                        cliente: [element]
+                    });
+                } else {
+                    existe.cliente.push(Object.assign(element));
+                }
+            });
+        }
+        if (tipo == "barrio") {
+            clientes.forEach(element => {
+                var barrio = element.nombreBarrio + " - " + element.nombreCiudad;
+                var existe = lsobjeto.find(a => a.nombre == barrio);
+                if (existe == undefined) {
+                    lsobjeto.push({
+                        id: id + 1,
+                        nombre: barrio,
+                        cliente: [element]
+                    });
+                } else {
+                    existe.cliente.push(Object.assign(element));
+                }
+            });
+        }
+        if (tipo == "quintil") {
+            clientes.forEach(element => {
+                var existe = lsobjeto.find(a => a.nombre == element.quintil);
+                if (existe == undefined) {
+                    lsobjeto.push({
+                        id: id + 1,
+                        nombre: element.quintil,
+                        cliente: [element]
+                    });
+                } else {
+                    existe.cliente.push(Object.assign(element));
+                }
+            });
+        }
+        lsobjeto.sort((a, b) => a.nombre > b.nombre ? 1 : -1);
+        if (orden == "mayor") {
+            lsobjeto.forEach(element => {
+                element.cliente.sort((a, b) => a.idQuintil < b.idQuintil ? 1 : -1);
+            });
+        }
+        if (orden == "menor") {
+            lsobjeto.forEach(element => {
+                element.cliente.sort((a, b) => a.idQuintil > b.idQuintil ? 1 : -1);
+            });
+        }
+        return lsobjeto;
+    }
+    compare(a, b) {
+        if (a.idQuintil < b.idQuintil) {
+            return -1;
+        }
+        if (a.idQuintil > b.idQuintil) {
+            return 1;
+        }
+        return 0;
+    }
+
+    static validarFechaCliente(visita: any, listaVisita: any, tipo: any, fechaSeleccionada: Date): boolean {
+
+        var estado: boolean = false;
+        if (tipo == "lista") {
+            var validarFecha = listaVisita.visitas.find(a => a.activo == false &&
+                new Date(a.visitDate).setHours(0, 0, 0, 0) ==
+                new Date(fechaSeleccionada).setHours(0, 0, 0, 0) &&
+                a.visitDate != null
+            );
+            if (validarFecha != undefined || validarFecha != null) {
+                return true;
+            }
+        } else {
+            if (new Date(visita.visitDate).setHours(0, 0, 0, 0) == new Date(fechaSeleccionada).setHours(0, 0, 0, 0)) {
+                return true;
+            }
+        }
+        return estado
+
+    }
+    static obtenerVisitasTotales(clientes: Array<ClientesInterface>) {
+        var objeto = {
+            visitasTotales: 0,
+            visitasProgramadas: 0
+        }
+        if (clientes == null) return objeto;
+        clientes.forEach(element => {
+            objeto.visitasTotales = objeto.visitasTotales + element.visitas.length;
+            objeto.visitasProgramadas = objeto.visitasProgramadas + (element.visitas.filter(a => a.visitDate != null).length)
+        });
+        return objeto;
+    }
+    static validarFechasCiclo(fechaSeleccion: Date, diaInicioCierre: Date, diaCierre: Date) {
+        var fechaSeleccionada = moment(fechaSeleccion);
+        var inicio = moment(diaInicioCierre);
+        var cierre = moment(diaCierre);
+        var diffInicio = Math.round(inicio.diff(fechaSeleccionada, 'days', true));
+        var diffFin = Math.round(cierre.diff(fechaSeleccionada, 'days', true));
+        if (isNaN(diffInicio) || isNaN(diffFin)) throw "Es obligatorio las fechas de cierre, comuniquese con un administrador";
+        if (diffInicio > 0) throw "No se puede asignar por debajo del cierre " + moment(diaInicioCierre).format('L');
+        if (diffFin < 0) throw "No se puede asignar por debajo del cierre " + moment(diaCierre).format('L');
+    }
+<<<<<<< HEAD
+    static async obtenerEstadoPlan(db: DatabaseService) {
+        const lsAgentIdentity = await db.obtenerListaObjetoIndexedDB(getDBStore(STORES.AgentIdentity));
+        const agentIdentity = lsAgentIdentity?.find(a => a.current == true);
+        return agentIdentity?.savedPlan;
+    }
+    static async obtenerClientesIndexDBMesAnterior(db: DatabaseService) {
+=======
+    static async obtenerEstadoPlan(db: DatabaseService){
+        const lsAgentIdentity = await db.obtenerListaObjetoIndexedDB(getDBStore(STORES.AgentIdentity));
+        const agentIdentity = lsAgentIdentity?.find(a => a.current == true);        
+        return agentIdentity?.savedPlan;
+    }
+    static async obtenerClientesIndexDBMesAnterior(db: DatabaseService){
+>>>>>>> origin/pruebas
+        var data = await db.obtenerListaObjetoIndexedDB(getDBStore(STORES.PlaneacionAnterior));
+        data = data?.filter(a => a.cicloAnterior == true);
+        return data;
+    }
+    static organizarClientes(clientes: any, anterior: boolean = false) {
+        if (clientes != null) {
+            var clientesOrganizados: Array<ClientesInterface> = new Array<ClientesInterface>();
+            var nombrefield = clientes.thirds?.[0]?.fields.find(a => a.id == 1);
+            var codigoEstadisticofield = clientes.thirds?.[0]?.fields.find(a => a.id == 2);
+            var quintilfield = clientes.thirds?.[0]?.fields.find(a => a.id == 4);
+            var codigofield = clientes.thirds?.[0]?.fields.find(a => a.id == 11);
+            var cantidadVisitasfield = clientes.thirds?.[0]?.fields.find(a => a.id == 7);
+            var nombreCiudadfield = clientes.thirds?.[0]?.fields.find(a => a.id == 14);
+            var nombreBarriofield = clientes.thirds?.[0]?.fields.find(a => a.id == 15);
+
+            var cupoDisponiblefield = clientes.thirds?.[0]?.fields.find(a => a.id == 8);
+            var clasefield = clientes.thirds?.[0]?.fields.find(a => a.id == 3);
+            var direccionfield = clientes.thirds?.[0]?.fields.find(a => a.id == 5);
+            var telefonofield = clientes.thirds?.[0]?.fields.find(a => a.id == 6);
+            var frecuenciafield = clientes.thirds?.[0]?.fields.find(a => a.id == 7);
+
+            clientes.entities.forEach(element => {
+<<<<<<< HEAD
+                var nombre = element.entityData.find(a => a.id == (nombrefield != undefined ? (nombrefield.id) : (1)));
+                var codigoEstadistico = element.entityData.find(a => a.id == (codigoEstadisticofield != undefined ? (codigoEstadisticofield.id) : (2)));
+                var quintil = element.entityData.find(a => a.id == (quintilfield != undefined ? quintilfield.id : 4));
+                var codigo = element.entityData.find(a => a.id == (codigofield != undefined ? codigofield.id : 11));
+                var duracion = element.entityData.find(a => a.id == 34)?.value;
+                var nombreCiudad = element.entityData.find(a => a.id == (nombreCiudadfield != undefined ? nombreCiudadfield.id : 14))?.value;
+                var nombreBarrio = element.entityData.find(a => a.id == (nombreBarriofield != undefined ? nombreBarriofield.id : 15))?.value;
+                var cupoDisponible = element.entityData.find(a => a.id == (cupoDisponiblefield != undefined ? cupoDisponiblefield.id : 8))?.value;
+                var clase = element.entityData.find(a => a.id == (clasefield != undefined ? clasefield.id : 3))?.value;
+                var direccion = element.entityData.find(a => a.id == (direccionfield != undefined ? direccionfield.id : 5))?.value;
+                var telefono = element.entityData.find(a => a.id == (telefonofield != undefined ? telefonofield.id : 6))?.value;
+=======
+                var nombre = element.entityData.find(a => a.id == (nombrefield != undefined ? (nombrefield.id):(1)) );
+                var codigoEstadistico = element.entityData.find(a => a.id == (codigoEstadisticofield != undefined ? (codigoEstadisticofield.id):(2)) );
+                var quintil = element.entityData.find(a => a.id == (quintilfield != undefined ? quintilfield.id : 4 ) );
+                var codigo = element.entityData.find(a => a.id == (codigofield != undefined ?  codigofield.id : 11) );
+                var duracion = element.entityData.find(a => a.id == 34)?.value;
+                var nombreCiudad = element.entityData.find(a => a.id == (nombreCiudadfield != undefined ? nombreCiudadfield.id : 14) )?.value;
+                var nombreBarrio = element.entityData.find(a => a.id == (nombreBarriofield != undefined ? nombreBarriofield.id : 15) )?.value;
+                var cupoDisponible = element.entityData.find(a => a.id == (cupoDisponiblefield != undefined ? cupoDisponiblefield.id : 8) )?.value;
+                var clase = element.entityData.find(a => a.id == (clasefield != undefined ? clasefield.id : 3 ))?.value;
+                var direccion = element.entityData.find(a => a.id == (direccionfield != undefined ? direccionfield.id : 5) )?.value;
+                var telefono = element.entityData.find(a => a.id == (telefonofield != undefined ? telefonofield.id : 6 ))?.value;
+>>>>>>> origin/pruebas
+                var frecuencia = element.entityData.find(a => a.id == (frecuenciafield != undefined ? frecuenciafield.id : 7))?.value;
+
+                var cantidad = new Array<VisitasInterface>();
+                element.entityVisits?.forEach(visita => {
+                    //Horas
+                    var horafin = null;
+                    var horainicio = null;
+                    var fecha = visita.visitDate != null ? new Date(visita.visitDate) : null;
+                    if (fecha != null) {
+                        fecha.setHours(0, 0, 0);
+                        horafin = new Date(fecha.setHours(duracion != null ? (duracion) : (3)));
+                        horainicio = new Date(fecha.setHours(0, 0, 0));
+                    }
+
+                    cantidad.push(Object.assign(
+                        {
+                            id: visita.id,
+                            visitDate: visita.visitDate != null ? visita.visitDate : null,
+                            activo: false,
+                            visit_Duration: duracion,
+                            fechaFin: horafin,
+                            fechaInicio: horainicio,
+                            idPlan: visita.idPlan,
+                            state: visita.state != null ? cteVisitas.obtenerTexo(visita.state) : cteVisitas.porIniciar,
+                            gpsInitLat: visita.gpsInitLat,
+                            gpsInitLng: visita.gpsInitLng,
+                            gpsFinishLat: visita.gpsFinishLat,
+                            gpsFinishLng: visita.gpsFinishLng,
+                            commentAction: visita?.commentAction,
+                            commentVisit: visita?.commentVisit,
+                            savedPlan: visita?.savedPlan
+                        })
+                    )
+                });
+                var lsEstadoCartera: Array<EstadosCarteraInterface>;
+                lsEstadoCartera = new Array<EstadosCarteraInterface>();
+                var etiqueta = false;
+
+                if (element?.portfolioStatus == null) {
+                    lsEstadoCartera.push(Object.assign(
+                        {
+                            id: cteClientes.cuentaCorriente,
+                            entityId: 0,
+                            status: "corriente",
+                            value: 0
+                        })
+                    )
+                } else {
+                    var entityId = element?.portfolioStatus?.entityId;
+                    element?.portfolioStatus?.estadosCartera?.forEach(status => {
+
+                        if (etiqueta == false) etiqueta = status.status == "Vencida" ? true : false;
+
+                        lsEstadoCartera.push(Object.assign(
+                            {
+                                id: (status.status == "Vencida" ? (cteClientes.vencida) : (
+                                    status.status == "PorVencerMayor30" ? (cteClientes.PorVencerMayor30) : (
+                                        status.status == "PorVencerMenor30" ? (cteClientes.PorVencerMenor30) : (0)))),
+                                entityId: entityId,
+                                status: status.status,
+                                value: status.value
+                            })
+                        )
+                    });
+                }
+                clientesOrganizados.push(Object.assign(
+                    {
+                        id: element.id,
+                        nombre: nombre != undefined ? this.quitarTildes(nombre.value) : "N/N",
+                        quintil: quintil != undefined && quintil != "" ? quintil.value : "sin segmento",
+                        codigo: codigo != undefined ? codigo.value : "N/N",
+                        activo: false,
+                        codigoEstadistico: codigoEstadistico != undefined ? codigoEstadistico.value : null,
+                        cantidad: element.entityVisits?.length,
+                        cantidadesAsignadas: element.entityVisits?.filter(a => a.visitDate != null).length,
+                        estado: (element.entityVisits?.filter(a => a.visitDate != null).length == 0 ? (cteClientes.sinVisita) : (
+                            element.entityVisits?.filter(a => a.visitDate != null).length < element.entityVisits?.length ? (cteClientes.parcial) : (
+                                element.entityVisits?.filter(a => a.visitDate != null).length == element.entityVisits?.length ? (cteClientes.programado) : (null)
+                            ))),
+                        visitas: cantidad,
+                        nombreCiudad: nombreCiudad,
+                        nombreBarrio: nombreBarrio,
+                        cupoDisponible: cupoDisponible,
+                        clase: clase,
+                        cicloAnterior: anterior,
+                        direccion: direccion,
+                        telefono: telefono,
+                        etiquetaVencida: etiqueta,
+                        frecuenciaVisita: frecuencia,
+                        listaEstadosCartera: lsEstadoCartera,
+                        duracion: duracion != undefined ? duracion : 3,
+                        idQuintil: quintil != undefined ? (
+                            quintil.value == "CS2" ? (cteClientes.CS2) : (
+                                quintil.value == "CS1" ? (cteClientes.CS1) : (
+                                    quintil.value == "Q5" ? (cteClientes.Q5) : (
+                                        quintil.value == "Q4" ? (cteClientes.Q4) : (
+                                            quintil.value == "Q3" ? (cteClientes.Q3) : (
+                                                quintil.value == "Q2" ? (cteClientes.Q2) : (
+                                                    quintil.value == "Q1" ? (cteClientes.Q1) : (cteClientes.SIN_QUINTIL)
+                                                )
+                                            )
+                                        )
+                                    )
+                                )
+                            )
+                        ) : (1)
+                    })
+                );
+            })
+            return clientesOrganizados;
+        }
+        return null;
+    }
+    static quitarTildes(cadena) {
+        return cadena.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
+    }
+}

@@ -1,0 +1,59 @@
+{
+  "menu": [
+    {
+      "icon": "fal fa-calendar-day",
+      "label": "Mi día",
+      "slug": "/mi-dia"
+    }
+  ],
+  "otrosmenu": [
+    {
+      "icon": "fal fa-tasks",
+      "label": "Tareas",
+      "slug": "tareas"
+    },
+    {
+      "icon": "fal fa-file-spreadsheet",
+      "label": "Informe",
+      "slug": "informe"
+    },
+    {
+      "icon": "fal fa-calendar-alt",
+      "label": "Plan día",
+      "slug": "plan"
+    }
+  ],
+  "modules": [
+    {
+      "name": "Planeación",
+      "icon": "https://placehold.it/60x60",
+      "route": "/"
+    },
+    {
+      "name": "Administración de clientes",
+      "route": "/",
+      "children": [
+        {
+          "name": "Maestra de clientes",
+          "icon": "https://placehold.it/60x60",
+          "route": "/"
+        },
+        {
+          "name": "Administración de cartera",
+          "icon": "https://placehold.it/60x60",
+          "route": "/"
+        }
+      ]
+    },
+    {
+      "name": "Entrenamientos",
+      "icon": "https://placehold.it/60x60",
+      "route": "/"
+    },
+    {
+      "name": "Novedades",
+      "icon": "https://placehold.it/60x60",
+      "route": "/"
+    }
+  ]
+}

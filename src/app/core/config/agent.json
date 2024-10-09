@@ -1,0 +1,29 @@
+{
+  "person": {
+    "name": "Javier Acosta",
+    "email": "jacosta@tecnoquimicas.com",
+    "avatar": "https://placehold.it/60x60"
+  },
+  "force": {
+    "name": "Representantes de ventas",
+    "id": "Reps"
+  },
+  "modules":[
+    {
+      "name": "Planeación",
+      "slug": "planeacion",
+      "module": "planeacion"
+    },
+    {
+      "name": "Entrenamiento",
+      "slug": "entrenamiento",
+      "module": "entrenamiento"
+    },
+    {
+      "name": "Novedades",
+      "slug": "novedades",
+      "module": "novedades"
+    }
+  ]
+
+}

@@ -1,0 +1,65 @@
+{
+    "tipo-poblacion": {
+        "header": {
+          "title": "Tipo de población",
+          "back": true
+        },
+        "count": 0,
+        "filters": [
+          {
+            "slug": "atendido-por",
+            "label": "Atendido por",
+            "options": []
+          },
+          {
+            "slug": "estado",
+            "label": "Estado",
+            "options": []
+          }
+        ],
+        "columns": [
+          {
+            "slug": "codigo",
+            "label": "Código",
+            "type": "text",
+            "class": "min-w-200px",
+            "bold": true,
+            "order": true
+          },
+          {
+            "slug": "nombre",
+            "label": "Nombre",
+            "class": "min-w-200px",
+            "type": "text",
+            "order": true
+          },
+          {
+            "slug": "atendido-por",
+            "label": "Atendido por",
+            "class": "min-w-200px",
+            "type": "text",
+            "order": true
+          },
+          {
+            "slug": "estado",
+            "label": "Estado",
+            "class": "min-w-200px",
+            "type": "status",
+            "order": true
+          },
+          {
+            "slug": "actions",
+            "label": "",
+            "type": "actions",
+            "actions": [
+              {
+                "action": "edit",
+                "icon": "fa fa-pencil",
+                "class": "accent"
+              }
+            ]
+          }
+        ],
+        "data": []
+      }
+}

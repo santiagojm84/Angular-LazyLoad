@@ -1,0 +1,64 @@
+{
+  "thirds": [
+    {
+      "id": 1,
+      "name": "CLIENTES MAYORISTAS",
+      "fields": [
+        {
+          "id": 1,
+          "name": "Nombre del Cliente",
+          "type": "CARACTER",
+          "size": 10,
+          "description": "Nombre del Cliente",
+          "operation": "VALIDAR",
+          "order": 1,
+          "title": false
+        },
+        {
+          "id": 2,
+          "name": "Estrato socio-económico",
+          "type": "CARACTER",
+          "size": 10,
+          "description": "Estrato socio-económico",
+          "operation": "VALIDAR",
+          "order": 2,
+          "title": true
+        }
+      ]
+    }
+  ],
+  "entities": [
+    {
+      "id": 1,
+      "thirdId": 1,
+      "institutionId": 1,
+      "personId": null,
+      "entityData": [
+        {
+          "id": 1,
+          "value": "El Éxito"
+        },
+        {
+          "id": 2,
+          "value": "5"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "thirdId": 1,
+      "institutionId": 1,
+      "personId": null,
+      "entityData": [
+        {
+          "id": 1,
+          "value": "Panamericana"
+        },
+        {
+          "id": 2,
+          "value": "4"
+        }
+      ]
+    }
+  ]
+}

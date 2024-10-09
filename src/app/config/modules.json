@@ -1,0 +1,36 @@
+{
+  "modules": [
+    {
+      "name": "Planeación",
+      "slug": "planeacion",
+      "module": "planeacion"
+    },
+    {
+      "name": "Administración de clientes",
+      "slug": "administracion-clientes",
+      "module": "sub"
+    },
+    {
+      "name": "Entrenamiento",
+      "slug": "entrenamiento",
+      "module": "entrenamiento"
+    },
+    {
+      "name": "Novedades",
+      "slug": "novedades",
+      "module": "novedades"
+    },
+    {
+      "name": "Maestra de clientes",
+      "slug": "maestra-clientes",
+      "module": "terceros",
+      "params": "xyz"
+    },
+    {
+      "name": "Administración cartera",
+      "slug": "administracion-cartera",
+      "module": "cartera",
+      "params": "xyz"
+    }
+  ]
+}
