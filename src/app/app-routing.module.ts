@@ -4,11 +4,6 @@ import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
   {
-    path:'',
-    redirectTo:'',
-    pathMatch:'full'
-  },
-  {
     path:'inicio',
     loadChildren:()=> import('./modules/inicio/inicio.module').then(m=> m.InicioModule)
   },
@@ -16,7 +11,6 @@ const routes: Routes = [
     path:'home',
     component:HomeComponent
   }
-
 ];
 
 @NgModule({
