@@ -1,0 +1,267 @@
+{
+  "data": {
+    "thirds": [
+      {
+        "id": 1,
+        "name": "Clientes",
+        "fields": [
+          {
+            "id": 1,
+            "name": "NOMBRE",
+            "type": "CARACTER",
+            "size": 100,
+            "description": "Nombre",
+            "operation": "VALIDAR",
+            "order": 1,
+            "title": true,
+            "filter": false,
+            "location": "INFO BASICA"
+          },
+          {
+            "id": 2,
+            "name": "ID",
+            "type": "CARACTER",
+            "size": 100,
+            "description": "ID",
+            "operation": "VALIDAR",
+            "order": 2,
+            "title": false,
+            "filter": false,
+            "location": "INFO BASICA"
+          },
+          {
+            "id": 9,
+            "name": "FECHA_ULTIMA_VISITA",
+            "type": "CARACTER",
+            "size": 100,
+            "description": "Última fecha de visita",
+            "operation": "VALIDAR",
+            "order": 2,
+            "title": false,
+            "filter": false,
+            "location": "INFO BASICA"
+          },
+          {
+            "id": 4,
+            "name": "TAMANO_CLIENTE",
+            "type": "CARACTER",
+            "size": 100,
+            "description": "Tamaño del cliente",
+            "operation": "VALIDAR",
+            "order": 2,
+            "title": false,
+            "filter": false,
+            "location": "INFO BASICA"
+          },
+          {
+            "id": 5,
+            "name": "DIRECCION",
+            "type": "CARACTER",
+            "size": 100,
+            "description": "Dirección",
+            "operation": "VALIDAR",
+            "order": 2,
+            "title": false,
+            "filter": false,
+            "location": "INFO BASICA"
+          },
+          {
+            "id": 1,
+            "name": "NOMBRE",
+            "type": "CARACTER",
+            "size": 100,
+            "description": "Nombre",
+            "operation": "VALIDAR",
+            "order": 1,
+            "title": true,
+            "filter": false,
+            "location": "INFO ADMINISTRATIVA"
+          },
+          {
+            "id": 2,
+            "name": "ID",
+            "type": "CARACTER",
+            "size": 100,
+            "description": "ID",
+            "operation": "VALIDAR",
+            "order": 2,
+            "title": false,
+            "filter": false,
+            "location": "INFO ADMINISTRATIVA"
+          },
+          {
+            "id": 3,
+            "name": "CLASE",
+            "type": "CARACTER",
+            "size": 100,
+            "description": "Clase",
+            "operation": "VALIDAR",
+            "order": 2,
+            "title": false,
+            "filter": true,
+            "location": "INFO ADMINISTRATIVA"
+          },
+          {
+            "id": 4,
+            "name": "TAMANO_CLIENTE",
+            "type": "CARACTER",
+            "size": 100,
+            "description": "Tamaño del cliente",
+            "operation": "VALIDAR",
+            "order": 2,
+            "title": false,
+            "filter": false,
+            "location": "INFO ADMINISTRATIVA"
+          },
+          {
+            "id": 5,
+            "name": "DIRECCION",
+            "type": "CARACTER",
+            "size": 100,
+            "description": "Dirección",
+            "operation": "VALIDAR",
+            "order": 2,
+            "title": false,
+            "filter": false,
+            "location": "INFO ADMINISTRATIVA"
+          },
+          {
+            "id": 6,
+            "name": "TELEFONO",
+            "type": "CARACTER",
+            "size": 100,
+            "description": "Teléfono",
+            "operation": "VALIDAR",
+            "order": 2,
+            "title": false,
+            "filter": false,
+            "location": "INFO ADMINISTRATIVA"
+          },
+          {
+            "id": 7,
+            "name": "FRECUENCIA_VISITA",
+            "type": "CARACTER",
+            "size": 100,
+            "description": "Frecuencia de visita",
+            "operation": "VALIDAR",
+            "order": 2,
+            "title": false,
+            "filter": false,
+            "location": "INFO ADMINISTRATIVA"
+          },
+          {
+            "id": 8,
+            "name": "CUPO_DISPONIBLE",
+            "type": "CARACTER",
+            "size": 100,
+            "description": "Cupo disponible",
+            "operation": "VALIDAR",
+            "order": 2,
+            "title": false,
+            "filter": false,
+            "location": "INFO ADMINISTRATIVA"
+          },
+          {
+            "id": 9,
+            "name": "FECHA_ULTIMA_VISITA",
+            "type": "CARACTER",
+            "size": 100,
+            "description": "Última fecha de visita",
+            "operation": "VALIDAR",
+            "order": 2,
+            "title": false,
+            "filter": false,
+            "location": "INFO ADMINISTRATIVA"
+          }
+        ]
+      }
+    ],
+    "entities": [
+      {
+        "id": 20590,
+        "thirdId": 1,
+        "institutionId": 20398,
+        "personId": null,
+        "entityData": [
+          {
+            "id": 2,
+            "value": "57638401"
+          },
+          {
+            "id": 1,
+            "value": "TECNOFAR TQ S.A.S."
+          },
+          {
+            "id": 3,
+            "value": "171"
+          },
+          {
+            "id": 5,
+            "value": "Cjto. Indust. Parque Sur - Villarica"
+          },
+          {
+            "id": 6,
+            "value": "8486737"
+          },
+          {
+            "id": 8,
+            "value": "999999999"
+          }
+        ]
+      },
+      {
+        "id": 20591,
+        "thirdId": 1,
+        "institutionId": 20399,
+        "personId": null,
+        "entityData": [
+          {
+            "id": 2,
+            "value": "55822301"
+          },
+          {
+            "id": 1,
+            "value": "TECNOQUIMICAS S.A."
+          },
+          {
+            "id": 3,
+            "value": "171"
+          },
+          {
+            "id": 5,
+            "value": "Aut. Yumbo Km. 4"
+          },
+          {
+            "id": 6,
+            "value": "8825555"
+          },
+          {
+            "id": 8,
+            "value": "9999999999"
+          }
+        ]
+      }
+    ],
+    "locations": [
+      {
+        "idLocation": 1,
+        "nameLocation": "MENU"
+      },
+      {
+        "idLocation": 2,
+        "nameLocation": "INFO BASICA"
+      },
+      {
+        "idLocation": 3,
+        "nameLocation": "INFO DETALLADA"
+      },
+      {
+        "idLocation": 4,
+        "nameLocation": "INFO ADMINISTRATIVA"
+      }
+    ]
+  },
+  "result": null,
+  "processed": true,
+  "error": null
+}
